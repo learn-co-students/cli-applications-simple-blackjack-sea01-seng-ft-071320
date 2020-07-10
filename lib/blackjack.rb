@@ -67,27 +67,12 @@ end
 def runner
   # code runner here
   welcome
-  runner_card_total= initial_round
+  card_total = initial_round
+   until card_total > 21
+    card_total= hit?(card_total)
+    display_card_total(card_total)
+    end
+  end_game(card_total)
   
-  if runner_card_total < 21
-    final_total = hit?(runner_card_total)
-    display_card_total(final_total) 
-    
-    while final_total == runner_card_total && runner_card_total <21
-      final_total = hit?(runner_card_total)
-      display_card_total(final_total)
-      final_total
-    end
-    
-    if final_total != runner_card_total && runner_card_total < 21
-      runner_card_total = deal_card + runner_card_total
-      
-      if runner_card_total > 21 
-        end_game(runner_card_total)
-      end
-    end
-  else 
-    end_game(runner_card_total)
-  end
 end
     
